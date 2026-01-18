@@ -19,7 +19,7 @@ SHAKE128 is a member of the SHA-3 family and provides variable-length output. Th
 Make sure the script is executable:
 
 ```bash
-chmod +x shake128.py
+chmod u+x shake128.py
 ```
 
 ## Usage
