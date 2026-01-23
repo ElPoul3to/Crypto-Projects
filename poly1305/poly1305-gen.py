@@ -30,7 +30,7 @@ def clamp(r: list) -> int:
     return int.from_bytes(bytes(r), "little")
 
 
-def poly1305(key: list, m: list) -> str:
+def poly1305_mac(m: list, key: list) -> str:
     r_list = key[:16]
     s_list = key[16:]
 
@@ -82,7 +82,7 @@ if __name__ == "__main__":
             key = hex_to_list(key_str)
             m = read_file(filename)
 
-            print(poly1305(key, m))
+            print(poly1305_mac(m, key))
 
         except Exception as e:
             print(f"Error: {e}")

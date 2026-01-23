@@ -25,7 +25,7 @@ def clamp(r: list) -> int:
     return int.from_bytes(bytes(r), "little")
 
 
-def poly1305(key: list, m: list) -> str:
+def poly1305_mac(m: list, key: list) -> str:
     r_int = clamp(key[:16])
     s_int = int.from_bytes(bytes(key[16:]), "little")
     acc = 0
@@ -61,7 +61,7 @@ if __name__ == "__main__":
         key = hex_to_list(key_str)
         m = read_file(filename)
 
-        computed_tag = poly1305(key, m)
+        computed_tag = poly1305_mac(m, key)
 
         if computed_tag == expected_tag:
             print("ACCEPT")
