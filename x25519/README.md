@@ -89,7 +89,53 @@ de9edb7d7b7dc1b4d35b61c2ece435373f8343c85b78674dadfc7e146f882b4f
 4a5d9d5ba4ce2de1728e3bf480350f25e07e21c947d19e3376f09b3c1e161742
 ```
 
+## Testing
 
+### Curve Operations Test Vectors
+
+Run the basic curve operations test vectors:
+
+```bash
+./x25519.py --test
+```
+
+This tests the Montgomery ladder implementation against known test vectors for scalar multiples [2]P, [3]P, [4]P, [5]P, and [7]P of the base point P = (9:*:1).
+
+### Iterative Test Vectors (RFC 7748 Section 5.2)
+
+Run the iterative test vectors:
+
+```bash
+./x25519.py --test-iter
+```
+
+This performs the iterative test from RFC 7748 where both k and u are initially set to:
+```
+0900000000000000000000000000000000000000000000000000000000000000
+```
+
+For each iteration, the function is called with the current k and u values, then:
+- k is set to the result
+- u is set to the old value of k
+
+**Expected results:**
+
+After 1 iteration:
+```
+422c8e7a6227d7bca1350b3e2bb7279f7897b87bb6854b783c60e80311ae3079
+```
+
+After 1,000 iterations:
+```
+684cf59ba83309552800ef566f2f4d3c1c3887c49360e3875f2eb94d99532c51
+```
+
+After 1,000,000 iterations:
+```
+7c3911e0ab2586fd864497297e575e6f3bc601c0883c30df5f4dd2d24f665424
+```
+
+**Note:** The 1,000,000 iteration test takes approximately 1-2 minutes to complete.
 
 ## Author
 
